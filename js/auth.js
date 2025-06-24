@@ -104,15 +104,25 @@ onAuthStateChanged(auth, user => {
   }
 });
 
-// Profile Dropdown Toggle
-profileDiv?.addEventListener('click', e => {
-  e.stopPropagation();
-  profileDiv.classList.toggle('open');
-});
 
-// Klick außerhalb schließt Dropdown
-document.addEventListener('click', () => {
-  profileDiv?.classList.remove('open');
+document.addEventListener("DOMContentLoaded", () => {
+  const profilePic = document.getElementById("profilePic");
+  const profileMenu = document.getElementById("profileMenu");
+
+  if (profilePic && profileMenu) {
+    profilePic.addEventListener("click", (e) => {
+      e.stopPropagation();
+      profileMenu.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", () => {
+      profileMenu.classList.add("hidden");
+    });
+
+    profileMenu.addEventListener("click", (e) => {
+      e.stopPropagation(); // Klicks im Menü lassen es offen
+    });
+  }
 });
 
 // Logout aus dem Menü
