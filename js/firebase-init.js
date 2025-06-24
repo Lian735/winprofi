@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAK-9CylSe-AuNV-8NbWCBbNSxLTHD-D-Y",
@@ -13,3 +13,20 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+
+// Passwort zurücksetzen
+const resetLink = document.getElementById('resetPasswordLink');
+if (resetLink) {
+  resetLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const email = prompt("Gib deine E-Mail-Adresse ein:");
+    if (!email) return;
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("Passwort-Zurücksetzen-E-Mail wurde gesendet.");
+    } catch (error) {
+      alert("Fehler beim Senden der E-Mail: " + error.message);
+    }
+  });
+}
