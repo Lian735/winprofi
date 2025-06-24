@@ -7,10 +7,6 @@
   --header-bg: #ffdcdc;     /* Etwas dunkleres Pastell für Header */
 }
 
-.hidden {
-  display: none !important;
-}
-
 /* Basis */
 * {
   box-sizing: border-box;
@@ -83,20 +79,6 @@ header {
 
 .nav-actions button:hover {
   filter: brightness(1.1);
-}
-.nav-btn {
-  background-color: var(--accent);
-  border: none;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: background-color 0.3s ease;
-  transition: filter 0.3s ease;
 }
 
 .nav-btn:hover {
@@ -228,52 +210,4 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
   background-color: rgba(0,0,0,0.1);
   border-radius: 4px;
-}
-
-/* Profil-Dropdown */
-.profile {
-  position: relative;
-  display: inline-block;
-}
-
-.profile-pic {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--accent);
-  cursor: pointer;
-}
-
-.profile-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: var(--card-bg);
-  border: 1px solid rgba(0,0,0,0.1);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  border-radius: 6px;
-  min-width: 140px;
-  display: none;
-  z-index: 1000;
-}
-
-.profile.open .profile-menu {
-  display: block;
-}
-
-.menu-item {
-  display: block;
-  padding: 0.6rem 1rem;
-  font-size: 0.9rem;
-  color: var(--text);
-  text-decoration: none;
-  background: none;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-}
-
-.menu-item:hover {
-  background-color: rgba(0,0,0,0.03);
 }
