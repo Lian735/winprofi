@@ -1,7 +1,27 @@
-// Header nachladen & Events setzen
+// Header einfügen und Event-Logik setzen
 (async () => {
-  // Header einfügen
-  const headerHTML = await fetch('/components/header.html').then(r => r.text());
+  const headerHTML = `
+    <header>
+      <nav class="header-nav">
+        <a href="index.html" class="logo">
+          <img src="assets/winprofilogo1.PNG" alt="WinProfi Logo" />
+        </a>
+        <div class="nav-actions">
+          <div id="authButtons" class="auth-buttons">
+            <button id="loginBtn" class="nav-btn">Login</button>
+            <button id="regBtn" class="nav-btn">Registrieren</button>
+          </div>
+          <div id="profile" class="profile hidden">
+            <img id="profilePic" src="assets/default-avatar.png" alt="Profilbild" class="profile-pic"/>
+            <div id="profileMenu" class="profile-menu hidden">
+              <a href="profile.html" class="menu-item">Mein Profil</a>
+              <button id="logoutBtn" class="menu-item">Logout</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+  `;
   document.getElementById('header').innerHTML = headerHTML;
 
   // Elemente greifen
