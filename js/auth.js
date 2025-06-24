@@ -122,3 +122,17 @@ document.getElementById('logoutBtn')?.addEventListener('click', e => {
     window.location.href = 'login.html';
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const profile = document.getElementById("profile");
+  const profilePic = document.getElementById("profilePic");
+
+  profilePic.addEventListener("click", (e) => {
+    e.stopPropagation();
+    profile.classList.toggle("open");
+  });
+
+  document.addEventListener("click", () => {
+    profile.classList.remove("open");
+  });
+});

@@ -290,14 +290,17 @@ body::-webkit-scrollbar-thumb {
   display: block;
 }
 
-summary {
-  list-style: none;
+
+/* Profilbild als Button für Dropdown */
+.clickable-profile {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #000;
   cursor: pointer;
-  display: block;
-  width: fit-content;
-  height: fit-content;
 }
 
-summary::-webkit-details-marker {
-  display: none;
+.profile.open .profile-menu {
+  display: block;
 }
