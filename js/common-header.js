@@ -7,7 +7,7 @@
           <img src="assets/winprofilogo1.PNG" alt="WinProfi Logo" />
         </a>
         <div class="nav-actions">
-          <div id="authButtons" class="auth-buttons">
+          <div id="authButtons" class="auth-buttons hidden">
             <a href="/login.html" class="nav-btn">Login</a>
             <a href="/register.html" class="nav-btn">Registrieren</a>
           </div>
@@ -38,13 +38,14 @@
     import('https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js').then(mod=>{
       const { onAuthStateChanged, signOut } = mod;
 
-      onAuthStateChanged(auth, user=>{
+      onAuthStateChanged(auth, user => {
         if (user) {
-          // Bild & sichtbare Elemente
+          // User ist eingeloggt: Profile sichtbar, Auth-Buttons verstecken
           profilePic.src = user.photoURL || 'assets/default-avatar.png';
           authButtons.classList.add('hidden');
           profile.classList.remove('hidden');
         } else {
+          // Kein User: Auth-Buttons sichtbar, Profile verstecken
           authButtons.classList.remove('hidden');
           profile.classList.add('hidden');
           profileMenu.classList.add('hidden');
