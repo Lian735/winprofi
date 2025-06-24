@@ -29,9 +29,14 @@
   const profilePic   = document.getElementById('profilePic');
   const profileMenu  = document.getElementById('profileMenu');
   const authButtons  = document.getElementById('authButtons');
-  const loginBtn     = document.getElementById('loginBtn');
-  const regBtn       = document.getElementById('regBtn');
   const logoutBtn    = document.getElementById('logoutBtn');
+
+  // Dropdown: EIN Listener auf den Container – bleibt stabil
+  profile.addEventListener('click', e => {
+   e.stopPropagation();
+   profileMenu.classList.toggle('hidden');
+  });
+  document.addEventListener('click', () => profileMenu.classList.add('hidden'));
 
   // ===== Auth-State ==========================================================
   import('/js/firebase-init.js').then(({ auth })=>{
