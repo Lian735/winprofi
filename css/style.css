@@ -89,6 +89,7 @@ header {
   gap: 0.5rem;
 }
 
+
 .profile img {
   width: 32px;
   height: 32px;
@@ -104,7 +105,8 @@ header {
 /* Main Content */
 main {
   padding: 8rem 1rem 2rem; /* zusätzlicher Abstand für den fixierten Header */
-  min-height: 100vh;
+  /* min-height: 100vh; entfernt, damit main nicht zu groß wird */
+  overflow-y: auto;
 }
 
 .public-content,
@@ -209,7 +211,7 @@ html, body {
 
 .login-container,
 .register-container {
-  height: calc(100vh - 140px); /* Platz für Header */
+  min-height: calc(100vh - 140px); /* Platz für Header */
   display: flex;
   flex-direction: column;
   justify-content: center;

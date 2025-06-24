@@ -70,7 +70,14 @@ onAuthStateChanged(auth, user => {
       profilePic.src = user.photoURL;
       profilePic.alt = user.displayName || user.email;
     } else {
-      profilePic.src = 'assets/default-avatar.png';
+      profilePic.src = "assets/default-avatar.png"; // Stelle sicher, dass das Bild wirklich existiert
+      profilePic.alt = "Standard-Profilbild";
+    }
+
+    console.log("Angemeldeter Benutzer:", user.email);
+    const adminEmails = ["lianschuster@icloud.com"];
+    if (adminEmails.includes(user.email)) {
+      document.getElementById('admin')?.classList.remove('hidden');
     }
   }
 });

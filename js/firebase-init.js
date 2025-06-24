@@ -31,6 +31,18 @@ if (resetLink) {
   });
 }
 
+// Profilbild styling anwenden
+const style = document.createElement('style');
+style.textContent = `
+  #profilePic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+`;
+document.head.appendChild(style);
+
 // Google Login
 const googleLoginBtn = document.getElementById('googleLogin');
 if (googleLoginBtn) {
