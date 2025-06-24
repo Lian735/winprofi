@@ -1,5 +1,5 @@
+import { getAuth, sendPasswordResetEmail, signInWithPopup, OAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
-import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAK-9CylSe-AuNV-8NbWCBbNSxLTHD-D-Y",
@@ -27,6 +27,20 @@ if (resetLink) {
       alert("Passwort-Zurücksetzen-E-Mail wurde gesendet.");
     } catch (error) {
       alert("Fehler beim Senden der E-Mail: " + error.message);
+    }
+  });
+}
+
+// Apple Login
+const appleLoginBtn = document.getElementById('appleLogin');
+if (appleLoginBtn) {
+  const provider = new OAuthProvider('apple.com');
+  appleLoginBtn.addEventListener('click', async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      window.location.href = 'index.html';
+    } catch (error) {
+      alert("Apple Login fehlgeschlagen: " + error.message);
     }
   });
 }
