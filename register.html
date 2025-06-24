@@ -1,15 +1,20 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrieren</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <h1>Registrieren</h1>
+  <form id="registerForm">
+    <input type="text" id="username" placeholder="E-Mail" required />
+    <input type="password" id="password" placeholder="Passwort" required />
+    <button type="submit">Registrieren</button>
+  </form>
+  <p>Schon einen Account? <a href="login.html">Login</a></p>
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAK-9CylSe-AuNV-8NbWCBbNSxLTHD-D-Y",
-  authDomain: "winprofi-81124.firebaseapp.com",
-  projectId: "winprofi-81124",
-  storageBucket: "winprofi-81124.firebasestorage.app",
-  messagingSenderId: "346157884690",
-  appId: "1:346157884690:web:b2d7b933835a50f677ffcb",
-  measurementId: "G-SSNVLHFDCC"
-};
-
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>
