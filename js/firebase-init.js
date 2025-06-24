@@ -1,4 +1,4 @@
-import { getAuth, sendPasswordResetEmail, signInWithPopup, OAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+import { getAuth, sendPasswordResetEmail, signInWithPopup, OAuthProvider, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
 
 const firebaseConfig = {
@@ -31,16 +31,16 @@ if (resetLink) {
   });
 }
 
-// Apple Login
-const appleLoginBtn = document.getElementById('appleLogin');
-if (appleLoginBtn) {
-  const provider = new OAuthProvider('apple.com');
-  appleLoginBtn.addEventListener('click', async () => {
+// Google Login
+const googleLoginBtn = document.getElementById('googleLogin');
+if (googleLoginBtn) {
+  const provider = new GoogleAuthProvider();
+  googleLoginBtn.addEventListener('click', async () => {
     try {
       await signInWithPopup(auth, provider);
       window.location.href = 'index.html';
     } catch (error) {
-      alert("Apple Login fehlgeschlagen: " + error.message);
+      alert("Google Login fehlgeschlagen: " + error.message);
     }
   });
 }
