@@ -7,6 +7,10 @@
   --header-bg: #ffdcdc;     /* Etwas dunkleres Pastell für Header */
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* Basis */
 * {
   box-sizing: border-box;
@@ -175,9 +179,6 @@ a:hover {
 }
 
 /* Helferklassen */
-.hidden {
-  display: none !important;
-}
 
 /* Mobile */
 @media (max-width: 600px) {
