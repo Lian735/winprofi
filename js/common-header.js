@@ -37,11 +37,26 @@
   });
 
   // ===== Dropdown-Toggle =====================================================
-  profilePic.addEventListener('click', e=>{
-    e.stopPropagation();
-    profileMenu.classList.toggle('hidden');
-  });
-  document.addEventListener('click', ()=> profileMenu.classList.add('hidden'));
+  if (profile && profilePic && profileMenu) {
+    // Klick auf Profil-Icon toggelt Menü
+    profilePic.addEventListener('click', e => {
+      e.stopPropagation();
+      profileMenu.classList.toggle('hidden');
+    });
+    // Klick auf Profil-Container toggelt Menü
+    profile.addEventListener('click', e => {
+      e.stopPropagation();
+      profileMenu.classList.toggle('hidden');
+    });
+    // Klick innerhalb des Menüs schließt nicht
+    profileMenu.addEventListener('click', e => {
+      e.stopPropagation();
+    });
+    // Klick außerhalb schließt Menü
+    document.addEventListener('click', () => {
+      profileMenu.classList.add('hidden');
+    });
+  }
 
   // ===== Gäste-Buttons =======================================================
   loginBtn .onclick = ()=> location.href = '/login.html';
