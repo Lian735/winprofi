@@ -8,8 +8,8 @@
         </a>
         <div class="nav-actions">
           <div id="authButtons" class="auth-buttons">
-            <button id="loginBtn" class="nav-btn">Login</button>
-            <button id="regBtn" class="nav-btn">Registrieren</button>
+            <a href="/login.html" class="nav-btn">Login</a>
+            <a href="/register.html" class="nav-btn">Registrieren</a>
           </div>
           <div id="profile" class="profile hidden">
             <img id="profilePic" src="assets/default-avatar.png" alt="Profilbild" class="profile-pic"/>
@@ -72,8 +72,4 @@
       profile.classList.remove('open');
     });
   }
-
-  // ===== Gäste-Buttons =======================================================
-  loginBtn .onclick = ()=> location.href = '/login.html';
-  regBtn   .onclick = ()=> location.href = '/register.html';
 })();
