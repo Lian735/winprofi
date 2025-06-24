@@ -1,25 +1,47 @@
-<div class="nav-actions">
-  <div id="profile" class="profile">
-    <img id="profilePic" src="assets/default-avatar.png" alt="Profilbild" />
-    <div id="profileMenu" class="profile-menu hidden">
-      <a href="profile.html" class="menu-item">Mein Profil</a>
-      <button id="logoutBtn" class="menu-item">Logout</button>
-    </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Startseite</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <nav class="header-nav">
+      <a href="index.html" class="logo">
+        <img src="assets/winprofilogo1.PNG" alt="WinProfi Logo" />
+      </a>
+        <div class="nav-actions">
+            <div id="profile" class="profile">
+                <div id="profileButton" class="profile-button">
+                  <img id="profilePic" src="assets/default-avatar.png" alt="Profilbild" class="clickable-profile" />
+                </div>
+                <div id="profileMenu" class="profile-menu hidden">
+                  <a href="profile.html" class="menu-item">Mein Profil</a>
+                  <button id="logoutBtn" class="menu-item">Logout</button>
+                </div>
+            </div>
+            </div>
+        </nav>
+  </header>
 
-<script>
-  const profileDiv = document.getElementById('profile');
-  const profilePic = document.getElementById('profilePic');
+  <main>
+    <section class="public-content">
+      <h1>Willkommen auf WinProfi!</h1>
+      <p>Das ist dein öffentlicher Bereich mit allgemeinen Infos.
+      </p>
+    </section>
+    <section id="restricted" class="hidden">
+      <h2>Exklusive Inhalte</h2>
+      <p>Nur eingeloggt sichtbar: Hier kannst du später weitere Module freischalten.</p>
+    </section>
+    <section id="admin" class="hidden">
+      <h2>Admin-Bereich</h2>
+      <p>Nur für Admins: Hier kannst du administrative Aufgaben erledigen.</p>
+    </section>
+  </main>
 
-  if (profilePic && profileDiv) {
-    profilePic.addEventListener('click', e => {
-      e.stopPropagation();
-      profileDiv.classList.toggle('open');
-    });
-  }
-
-  document.addEventListener('click', () => {
-    profileDiv?.classList.remove('open');
-  });
-</script>
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>
