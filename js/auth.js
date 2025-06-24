@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
@@ -13,7 +14,6 @@ if (registerForm) {
     e.preventDefault();
     const email = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value;
-
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert('Registrierung erfolgreich!');
@@ -31,7 +31,6 @@ if (loginForm) {
     e.preventDefault();
     const email = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value;
-
     try {
       await signInWithEmailAndPassword(auth, email, password);
       window.location.href = 'index.html';
@@ -41,52 +40,85 @@ if (loginForm) {
   });
 }
 
-// Header-Elemente
-const loginBtn      = document.getElementById('loginBtn');
-const registerBtn   = document.getElementById('registerBtn');
-const profileDiv    = document.getElementById('profile');
-const profilePic    = document.getElementById('profilePic');
-const profileEmail  = document.getElementById('profileEmail');
-const restrictedSec = document.getElementById('restricted');
+// Passwort zurücksetzen
+const resetLink = document.getElementById('resetPasswordLink');
+if (resetLink) {
+  resetLink.addEventListener('click', async e => {
+    e.preventDefault();
+    const email = prompt("Gib deine E-Mail-Adresse ein:");
+    if (!email) return;
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("Passwort-Zurücksetzen-E-Mail wurde gesendet.");
+    } catch (error) {
+      alert("Fehler: " + error.message);
+    }
+  });
+}
 
+// Weiterleitung Login/Register
+const loginBtn = document.getElementById('loginBtn');
+const registerBtn = document.getElementById('registerBtn');
 if (loginBtn)    loginBtn.onclick    = () => window.location.href = 'login.html';
 if (registerBtn) registerBtn.onclick = () => window.location.href = 'register.html';
 
-// Zugriffsschutz und dynamische Anzeige
+// Elemente für Header und Inhalte
+const profileDiv    = document.getElementById('profile');
+const profilePic    = document.getElementById('profilePic');
+const profileMenu   = document.getElementById('profileMenu');
+const restrictedSec = document.getElementById('restricted');
+const adminSec      = document.getElementById('admin');
+
+// Auth-State Listener
 onAuthStateChanged(auth, user => {
   if (!user) {
+    // nicht eingeloggt
     loginBtn?.classList.remove('hidden');
     registerBtn?.classList.remove('hidden');
     profileDiv?.classList.add('hidden');
     restrictedSec?.classList.add('hidden');
+    adminSec?.classList.add('hidden');
   } else {
+    // eingeloggt
     loginBtn?.classList.add('hidden');
     registerBtn?.classList.add('hidden');
     profileDiv?.classList.remove('hidden');
     restrictedSec?.classList.remove('hidden');
 
-    profileEmail.textContent = user.email || '';
+    // Profilbild & Alt-Text
     if (user.photoURL) {
       profilePic.src = user.photoURL;
       profilePic.alt = user.displayName || user.email;
     } else {
-      profilePic.src = "assets/default-avatar.png"; // Stelle sicher, dass das Bild wirklich existiert
+      profilePic.src = "assets/default-avatar.png";
       profilePic.alt = "Standard-Profilbild";
     }
 
-    console.log("Angemeldeter Benutzer:", user.email);
+    // Admin-Bereich
     const adminEmails = ["lianschuster@icloud.com"];
     if (adminEmails.includes(user.email)) {
-      document.getElementById('admin')?.classList.remove('hidden');
+      adminSec?.classList.remove('hidden');
+    } else {
+      adminSec?.classList.add('hidden');
     }
   }
 });
 
-// Logout
-document.addEventListener('click', e => {
-  if (e.target.id === 'logoutBtn') {
-    signOut(auth).then(() => {
-      window.location.href = 'login.html';
-    });
-  }
+// Profile Dropdown Toggle
+profileDiv?.addEventListener('click', e => {
+  e.stopPropagation();
+  profileDiv.classList.toggle('open');
+});
+
+// Klick außerhalb schließt Dropdown
+document.addEventListener('click', () => {
+  profileDiv?.classList.remove('open');
+});
+
+// Logout aus dem Menü
+document.getElementById('logoutBtn')?.addEventListener('click', e => {
+  e.preventDefault();
+  signOut(auth).then(() => {
+    window.location.href = 'login.html';
+  });
 });
