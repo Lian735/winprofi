@@ -33,12 +33,14 @@ header {
   top: 0;
   width: 100%;
   z-index: 1000;
+  flex-wrap: wrap;
 }
 
 .header-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .logo {
@@ -56,7 +58,8 @@ header {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 
 .nav-actions button {
@@ -98,6 +101,7 @@ header {
 .profile {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 
