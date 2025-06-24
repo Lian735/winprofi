@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div id="header"></div>
+  <!-- Header wird dynamisch geladen -->
   <div id="header"></div>
   <!-- der Rest deiner Seite -->
 
@@ -27,7 +27,8 @@
     </section>
   </main>
 
-  <script type="module" src="js/auth.js"></script>
+<script type="module" src="/js/common-header.js"></script>
+<script type="module" src="js/auth.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const profileDiv = document.getElementById('profile');
@@ -64,6 +65,5 @@
       }
     });
 </script>
-<script type="module" src="/js/common-header.js"></script>
 </body>
 </html>

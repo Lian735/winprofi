@@ -9,11 +9,10 @@
 <body>
   <div id="header"></div>
   <!-- der Rest deiner Seite -->
-<body>
   <main class="login-container">
     <h1>Login</h1>
     <form id="loginForm">
-      <input type="text" id="username" placeholder="Benutzername" required />
+      <input type="email" id="email" placeholder="E-Mail" required />
       <input type="password" id="password" placeholder="Passwort" required />
       <button type="submit">Einloggen</button>
     </form>
@@ -22,24 +21,6 @@
     <button id="googleLogin">Mit Google anmelden</button>
   </main>
   <script type="module" src="js/auth.js"></script>
-<script>
-  fetch('components/header.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('header').innerHTML = data;
-      // Event-Handler für Profil-Menü initialisieren
-      const profileDiv = document.getElementById('profile');
-      const profileButton = document.getElementById('profileButton');
-      if (profileDiv && profileButton) {
-        profileButton.addEventListener('click', e => {
-          e.stopPropagation();
-          profileDiv.classList.toggle('open');
-        });
-        document.addEventListener('click', () => {
-          profileDiv.classList.remove('open');
-        });
-      }
-    });
-</script>
+  <script type="module" src="/js/common-header.js"></script>
 </body>
 </html>

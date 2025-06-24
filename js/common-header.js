@@ -1,5 +1,7 @@
 // Header einfügen und Event-Logik setzen
 (async () => {
+  const headerEl = document.getElementById('header');
+  if (!headerEl) return;
   const headerHTML = `
     <header>
       <nav class="header-nav">
@@ -22,7 +24,7 @@
       </nav>
     </header>
   `;
-  document.getElementById('header').innerHTML = headerHTML;
+  headerEl.innerHTML = headerHTML;
 
   // Elemente greifen
   const profile      = document.getElementById('profile');
@@ -31,16 +33,20 @@
   const authButtons  = document.getElementById('authButtons');
   const logoutBtn    = document.getElementById('logoutBtn');
 
-  // Dropdown: EIN Listener auf den Container – bleibt stabil
-  profile.addEventListener('click', e => {
-   e.stopPropagation();
-   profileMenu.classList.toggle('hidden');
+  // Dropdown: EIN Listener auf profilePic – bleibt stabil
+  profilePic.addEventListener('click', e => {
+    e.stopPropagation();
+    profile.classList.toggle('open');
+    profileMenu.classList.toggle('hidden');
   });
-  document.addEventListener('click', () => profileMenu.classList.add('hidden'));
+  document.addEventListener('click', () => {
+    profileMenu.classList.add('hidden');
+    profile.classList.remove('open');
+  });
 
   // ===== Auth-State ==========================================================
   import('/js/firebase-init.js').then(({ auth })=>{
-    import('https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js').then(mod=>{
+    import('/js/firebase-auth.js').then(mod=>{
       const { onAuthStateChanged, signOut } = mod;
 
       onAuthStateChanged(auth, user => {
@@ -54,6 +60,7 @@
           authButtons.classList.remove('hidden');
           profile.classList.add('hidden');
           profile.classList.remove('open'); // Menü sicher schließen
+          profileMenu.classList.add('hidden');
         }
       });
 
@@ -61,21 +68,4 @@
       logoutBtn.addEventListener('click', ()=> signOut(auth));
     });
   });
-
-  // ===== Dropdown-Toggle =====================================================
-  if (profile && profilePic && profileMenu) {
-    // Klick auf Profil-Icon toggelt open-Klasse auf dem Container
-    profilePic.addEventListener('click', e => {
-      e.stopPropagation();
-      profile.classList.toggle('open');
-    });
-    // Klick innerhalb des Menüs verhindert Schließen
-    profileMenu.addEventListener('click', e => {
-      e.stopPropagation();
-    });
-    // Klick außerhalb schließt das Menü
-    document.addEventListener('click', () => {
-      profile.classList.remove('open');
-    });
-  }
 })();

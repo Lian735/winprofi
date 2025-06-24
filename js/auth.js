@@ -5,14 +5,14 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
   signOut
-} from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+} from "firebase/auth";
 
 // Registrierung
 const registerForm = document.getElementById('registerForm');
 if (registerForm) {
   registerForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const email = document.getElementById('username').value.trim();
+    const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -29,7 +29,7 @@ const loginForm = document.getElementById('loginForm');
 if (loginForm) {
   loginForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const email = document.getElementById('username').value.trim();
+    const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -104,26 +104,6 @@ onAuthStateChanged(auth, user => {
   }
 });
 
-
-document.addEventListener("DOMContentLoaded", () => {
-  const profilePic = document.getElementById("profilePic");
-  const profileMenu = document.getElementById("profileMenu");
-
-  if (profilePic && profileMenu) {
-    profilePic.addEventListener("click", (e) => {
-      e.stopPropagation();
-      profileMenu.classList.toggle("hidden");
-    });
-
-    document.addEventListener("click", () => {
-      profileMenu.classList.add("hidden");
-    });
-
-    profileMenu.addEventListener("click", (e) => {
-      e.stopPropagation(); // Klicks im Menü lassen es offen
-    });
-  }
-});
 
 // Logout aus dem Menü
 document.getElementById('logoutBtn')?.addEventListener('click', e => {

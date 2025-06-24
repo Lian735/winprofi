@@ -68,38 +68,7 @@ header {
   gap: 1rem;
 }
 
-.nav-actions button {
-  background-color: var(--accent);
-  border: none;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: background-color 0.3s ease;
-}
-
 .nav-actions button:hover {
-  filter: brightness(1.1);
-}
-.nav-btn {
-  background-color: var(--accent);
-  border: none;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: background-color 0.3s ease;
-  transition: filter 0.3s ease;
-}
-
-.nav-btn:hover {
   filter: brightness(1.1);
 }
 
@@ -148,7 +117,13 @@ input {
   font-family: inherit;
 }
 
-button, .nav-btn, .nav-actions button {
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(255,107,107,0.2);
+}
+
+.btn {
   background-color: var(--accent);
   color: #fff;
   padding: 0.6rem 1.2rem;
@@ -156,9 +131,12 @@ button, .nav-btn, .nav-actions button {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.3s ease;
 }
 
-button:hover, .nav-btn:hover, .nav-actions button:hover {
+.btn:hover {
   filter: brightness(1.1);
 }
 
@@ -276,4 +254,20 @@ body::-webkit-scrollbar-thumb {
 
 .menu-item:hover {
   background-color: rgba(0,0,0,0.03);
+}
+
+.error {
+  color: #d8000c;
+  background-color: #ffd2d2;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.success {
+  color: #270;
+  background-color: #dff2bf;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
 }
