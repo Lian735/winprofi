@@ -3,19 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
+  <title>Startseite</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <h1>Login</h1>
-  <form id="loginForm">
-    <input type="text" id="username" placeholder="Benutzername" required />
-    <input type="password" id="password" placeholder="Passwort" required />
-    <button type="submit">Einloggen</button>
-  </form>
-  <p>Kein Account? <a href="register.html">Registrieren</a></p>
-  <p><a href="#" id="resetPasswordLink">Passwort vergessen?</a></p>
+  <header>
+    <nav class="header-nav">
+      <a href="index.html" class="logo">
+        <img src="assets/winprofilogo1.PNG" alt="WinProfi Logo" />
+      </a>
+      <div class="nav-actions">
+        <a href="register.html" id="registerBtn" class="nav-btn">Registrieren</a>
+        <div id="profile" class="hidden">
+          <img id="profilePic" src="" alt="Profilbild" />
+          <span id="profileEmail"></span>
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+<body>
+  <main class="login-container">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Benutzername" required />
+      <input type="password" id="password" placeholder="Passwort" required />
+      <button type="submit">Einloggen</button>
+    </form>
+    <p>Kein Account? <a href="register.html">Registrieren</a></p>
+    <p><a href="#" id="resetPasswordLink">Passwort vergessen?</a></p>
+    <button id="googleLogin">Mit Google anmelden</button>
+  </main>
   <script type="module" src="js/auth.js"></script>
-  <button id="googleLogin">Mit Google anmelden</button>
 </body>
 </html>

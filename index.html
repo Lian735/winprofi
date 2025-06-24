@@ -7,8 +7,34 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <h1>Willkommen!</h1>
-  <p>Nur sichtbar, wenn eingeloggt.</p>
-  <script src="js/auth.js"></script>
+  <header>
+    <nav class="header-nav">
+      <a href="index.html" class="logo">
+        <img src="assets/winprofilogo1.PNG" alt="WinProfi Logo" />
+      </a>
+      <div class="nav-actions">
+        <a href="login.html" id="loginBtn" class="nav-btn">Anmelden</a>
+        <a href="register.html" id="registerBtn" class="nav-btn">Registrieren</a>
+        <div id="profile" class="hidden">
+          <img id="profilePic" src="" alt="Profilbild" />
+          <span id="profileEmail"></span>
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="public-content">
+      <h1>Willkommen auf WinProfi!</h1>
+      <p>Das ist dein öffentlicher Bereich mit allgemeinen Infos.</p>
+    </section>
+    <section id="restricted" class="hidden">
+      <h2>Exklusive Inhalte</h2>
+      <p>Nur eingeloggt sichtbar: Hier kannst du später weitere Module freischalten.</p>
+    </section>
+  </main>
+
+  <script type="module" src="js/auth.js"></script>
 </body>
 </html>

@@ -1,50 +1,219 @@
+/* Pastell-Rot Farb-Variablen */
+:root {
+  --primary-bg: #ffeaea;    /* Helles Pastell-Rot als Seitenhintergrund */
+  --card-bg: #ffffff;       /* Weiße Karten/Hintergrund für Inhalte */
+  --accent: #ff6b6b;        /* Kräftigeres Rot für Buttons und Links */
+  --text: #333333;          /* Dunkles Grau für Text */
+  --header-bg: #ffdcdc;     /* Etwas dunkleres Pastell für Header */
+}
+
+/* Basis */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text);
+  line-height: 1.5;
 }
 
-h1 {
-  color: #333;
+/* Header */
+header {
+  background-color: var(--header-bg);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-form {
-  max-width: 300px;
-  margin: 1rem 0;
+.header-nav {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.logo img {
+  height: 70px;
+  object-fit: contain;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-actions button {
+  background-color: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.nav-actions button:hover {
+  background-color: #ff4c4c;
+}
+.nav-btn {
+  background-color: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Profil */
+.profile {
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
 }
 
+.profile img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+#profileEmail {
+  font-size: 0.9rem;
+}
+
+/* Main Content */
+main {
+  padding: 8rem 1rem 2rem; /* zusätzlicher Abstand für den fixierten Header */
+  min-height: 100vh;
+}
+
+.public-content,
+#restricted {
+  background-color: var(--card-bg);
+  margin: 1rem auto;
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 800px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+  margin-top: 0;
+}
+
+/* Formulare */
+form {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
   border-radius: 4px;
+  font-family: inherit;
 }
 
 button {
-  padding: 0.5rem;
-  background: #007bff;
-  color: white;
+  background-color: var(--accent);
+  color: #fff;
   border: none;
+  padding: 0.75rem;
   border-radius: 4px;
   cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background: #0056b3;
+  background-color: #ff4c4c;
 }
 
+/* Textelemente */
 p {
   margin-top: 1rem;
+  font-size: 0.95rem;
 }
 
 a {
-  color: #007bff;
+  color: var(--accent);
   text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  filter: brightness(1.1);
+}
+
+/* Helferklassen */
+.hidden {
+  display: none !important;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .header-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .nav-btn {
+  background-color: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+}
+
+
+html, body {
+  height: 100%;
+}
+
+.login-container,
+.register-container {
+  height: calc(100vh - 140px); /* Platz für Header */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 2rem;
 }

@@ -41,19 +41,39 @@ if (loginForm) {
   });
 }
 
-// Zugriffsschutz Index
-if (window.location.pathname.includes('index.html')) {
-  onAuthStateChanged(auth, user => {
-    if (!user) {
-      window.location.href = 'login.html';
+// Header-Elemente
+const loginBtn      = document.getElementById('loginBtn');
+const registerBtn   = document.getElementById('registerBtn');
+const profileDiv    = document.getElementById('profile');
+const profilePic    = document.getElementById('profilePic');
+const profileEmail  = document.getElementById('profileEmail');
+const restrictedSec = document.getElementById('restricted');
+
+if (loginBtn)    loginBtn.onclick    = () => window.location.href = 'login.html';
+if (registerBtn) registerBtn.onclick = () => window.location.href = 'register.html';
+
+// Zugriffsschutz und dynamische Anzeige
+onAuthStateChanged(auth, user => {
+  if (!user) {
+    loginBtn?.classList.remove('hidden');
+    registerBtn?.classList.remove('hidden');
+    profileDiv?.classList.add('hidden');
+    restrictedSec?.classList.add('hidden');
+  } else {
+    loginBtn?.classList.add('hidden');
+    registerBtn?.classList.add('hidden');
+    profileDiv?.classList.remove('hidden');
+    restrictedSec?.classList.remove('hidden');
+
+    profileEmail.textContent = user.email || '';
+    if (user.photoURL) {
+      profilePic.src = user.photoURL;
+      profilePic.alt = user.displayName || user.email;
     } else {
-      document.body.insertAdjacentHTML(
-        'afterbegin',
-        `<p>Eingeloggt als <strong>${user.email}</strong> <button id="logoutBtn">Logout</button></p>`
-      );
+      profilePic.src = 'assets/default-avatar.png';
     }
-  });
-}
+  }
+});
 
 // Logout
 document.addEventListener('click', e => {
