@@ -43,5 +43,22 @@
   </main>
 
   <script type="module" src="js/auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const profileDiv = document.getElementById('profile');
+    const profileButton = document.getElementById('profileButton');
+
+    if (profileButton && profileDiv) {
+      profileButton.addEventListener('click', e => {
+        e.stopPropagation();
+        profileDiv.classList.toggle('open');
+      });
+
+      document.addEventListener('click', () => {
+        profileDiv.classList.remove('open');
+      });
+    }
+  });
+</script>
 </body>
 </html>
