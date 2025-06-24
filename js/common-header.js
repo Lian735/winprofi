@@ -38,23 +38,18 @@
 
   // ===== Dropdown-Toggle =====================================================
   if (profile && profilePic && profileMenu) {
-    // Klick auf Profil-Icon toggelt Menü
+    // Klick auf Profil-Icon toggelt open-Klasse auf dem Container
     profilePic.addEventListener('click', e => {
       e.stopPropagation();
-      profileMenu.classList.toggle('hidden');
+      profile.classList.toggle('open');
     });
-    // Klick auf Profil-Container toggelt Menü
-    profile.addEventListener('click', e => {
-      e.stopPropagation();
-      profileMenu.classList.toggle('hidden');
-    });
-    // Klick innerhalb des Menüs schließt nicht
+    // Klick innerhalb des Menüs verhindert Schließen
     profileMenu.addEventListener('click', e => {
       e.stopPropagation();
     });
-    // Klick außerhalb schließt Menü
+    // Klick außerhalb schließt das Menü
     document.addEventListener('click', () => {
-      profileMenu.classList.add('hidden');
+      profile.classList.remove('open');
     });
   }
 
