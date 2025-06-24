@@ -292,6 +292,10 @@ body::-webkit-scrollbar-thumb {
 
 summary {
   list-style: none;
+  cursor: pointer;
+  display: block;
+  width: fit-content;
+  height: fit-content;
 }
 
 summary::-webkit-details-marker {
