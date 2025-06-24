@@ -7,13 +7,13 @@
           <img src="assets/winprofilogo1.PNG" alt="WinProfi Logo" />
         </a>
         <div class="nav-actions">
-          <div id="authButtons" class="auth-buttons hidden">
+          <div id="authButtons" class="auth-buttons">
             <a href="/login.html" class="nav-btn">Login</a>
             <a href="/register.html" class="nav-btn">Registrieren</a>
           </div>
           <div id="profile" class="profile hidden">
             <img id="profilePic" src="assets/default-avatar.png" alt="Profilbild" class="profile-pic"/>
-            <div id="profileMenu" class="profile-menu hidden">
+            <div id="profileMenu" class="profile-menu">
               <a href="profile.html" class="menu-item">Mein Profil</a>
               <button id="logoutBtn" class="menu-item">Logout</button>
             </div>
@@ -53,7 +53,7 @@
           // Kein User: Auth-Buttons sichtbar, Profile verstecken
           authButtons.classList.remove('hidden');
           profile.classList.add('hidden');
-          profileMenu.classList.add('hidden');
+          profile.classList.remove('open'); // Menü sicher schließen
         }
       });
 
