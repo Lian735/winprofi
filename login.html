@@ -7,21 +7,8 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header>
-    <nav class="header-nav">
-      <a href="index.html" class="logo">
-        <img src="assets/winprofilogo1.PNG" alt="WinProfi Logo" />
-      </a>
-      <div class="nav-actions">
-        <a href="register.html" id="registerBtn" class="nav-btn">Registrieren</a>
-        <div id="profile" class="hidden">
-          <img id="profilePic" src="" alt="Profilbild" />
-          <span id="profileEmail"></span>
-          <button id="logoutBtn">Logout</button>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <div id="header"></div>
+  <!-- der Rest deiner Seite -->
 <body>
   <main class="login-container">
     <h1>Login</h1>
@@ -35,5 +22,24 @@
     <button id="googleLogin">Mit Google anmelden</button>
   </main>
   <script type="module" src="js/auth.js"></script>
+<script>
+  fetch('components/header.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+      // Event-Handler für Profil-Menü initialisieren
+      const profileDiv = document.getElementById('profile');
+      const profileButton = document.getElementById('profileButton');
+      if (profileDiv && profileButton) {
+        profileButton.addEventListener('click', e => {
+          e.stopPropagation();
+          profileDiv.classList.toggle('open');
+        });
+        document.addEventListener('click', () => {
+          profileDiv.classList.remove('open');
+        });
+      }
+    });
+</script>
 </body>
 </html>
